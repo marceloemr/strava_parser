@@ -8,6 +8,7 @@ WHERE
 GROUP BY mes
 ORDER BY mes;
 
+
 SELECT round(sum(Distance)/1000, 1) AS "Total"
 FROM activities
 WHERE

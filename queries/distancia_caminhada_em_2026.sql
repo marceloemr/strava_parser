@@ -1,6 +1,6 @@
 SELECT
     strftime('%m-%Y', Date) as mes,
-    round(sum(Distance)/1000, 1) AS "Distancia caminhada"
+    round(sum(Distance)/1000, 1) AS "distancia caminhada"
 FROM activities
 WHERE
     strftime('%Y', Date) = '2026'
