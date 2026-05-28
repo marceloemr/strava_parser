@@ -1,4 +1,4 @@
-SELECT * FROM activities;
+SELECT count(*) AS "numero de registros" FROM activities;
 
 SELECT
     strftime('%m-%Y', Date) as mes,
