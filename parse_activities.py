@@ -30,7 +30,7 @@ def parse_date(date):
 
     day = parts[0]
     month = months[parts[2]]
-    year = parts[4]
+    year = parts[4][:-1]
     time = parts[5]
 
     normalized = f"{year}-{month}-{day} {time}"
