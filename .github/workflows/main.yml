@@ -38,6 +38,7 @@ jobs:
             echo "${{ github.event.inputs.zip_url }}"
 
             curl -L "${{ github.event.inputs.zip_url }}" -o data/latest.zip
+          fi
 
       - name: Unzip archive
         run: |
