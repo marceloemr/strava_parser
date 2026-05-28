@@ -7,7 +7,7 @@ on:
       - main
 
 jobs:
-  Update DB:
+  update-db:
     runs-on: ubuntu-latest
 
     steps:
