@@ -1,7 +1,14 @@
 import csv
 import sqlite3
 from datetime import datetime
-from argparse import ArgumentParser 
+from argparse import ArgumentParser
+
+VALID_ACTIVITIES = {
+    "Walk": "Walk", 
+    "Caminhada": "Walk", 
+    "Run": "Run", 
+    "Corrida": "Run"
+}
 
 def main(csv_file: str, db_file: str):
     conn = sqlite3.connect(db_file)
@@ -36,11 +43,13 @@ def main(csv_file: str, db_file: str):
             moving_time = row[16]
             distance = row[17]
 
-            if (activity_type != 'Walk') and (activity_type != 'Run'):
+            if activity_type not in VALID_ACTIVITIES.keys():
                 continue
 
             dt = datetime.strptime(date, "%b %d, %Y, %I:%M:%S %p")
             iso_date = dt.strftime("%Y-%m-%d %H:%M:%S")
+
+            activity_type = VALID_ACTIVITIES[activity_type]
 
             cursor.execute("""
             INSERT OR IGNORE INTO activities

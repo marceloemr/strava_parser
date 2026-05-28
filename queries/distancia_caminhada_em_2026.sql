@@ -1,5 +1,3 @@
-SELECT count(*) AS "numero de registros" FROM activities;
-
 SELECT
     strftime('%m-%Y', Date) as mes,
     round(sum(Distance)/1000, 1) AS "distancia caminhada (km)",
