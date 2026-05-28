@@ -5,7 +5,7 @@ SELECT
 FROM activities
 WHERE
     strftime('%Y', Date) = '2026'
-    AND Type = "Walk"
+    AND (Type = "Walk" OR Type = "Run")
 GROUP BY mes
 ORDER BY mes;
 
@@ -16,4 +16,4 @@ SELECT
 FROM activities
 WHERE
     strftime('%Y', Date) = '2026'
-    AND Type = "Walk";
+    AND (Type = "Walk" OR Type = "Run");

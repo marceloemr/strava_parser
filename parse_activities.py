@@ -36,7 +36,7 @@ def main(csv_file: str, db_file: str):
             moving_time = row[16]
             distance = row[17]
 
-            if activity_type != 'Walk':
+            if (activity_type != 'Walk') or (activity_type != 'Run'):
                 continue
 
             dt = datetime.strptime(date, "%b %d, %Y, %I:%M:%S %p")
