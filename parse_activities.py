@@ -79,7 +79,7 @@ def main(csv_file: str, db_file: str):
                 dt = parse_date(date)
             except:
                 print("Error when parsing csv")
-                exit 1
+                return 1
             iso_date = dt.strftime("%Y-%m-%d %H:%M:%S")
 
             activity_type = VALID_ACTIVITIES[activity_type]
