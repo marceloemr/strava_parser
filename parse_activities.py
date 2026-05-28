@@ -10,6 +10,33 @@ VALID_ACTIVITIES = {
     "Corrida": "Run"
 }
 
+def parse_date(date):
+    months = {
+    "jan.": "01",
+    "fev.": "02",
+    "mar.": "03",
+    "abr.": "04",
+    "mai.": "05",
+    "jun.": "06",
+    "jul.": "07",
+    "ago.": "08",
+    "set.": "09",
+    "out.": "10",
+    "nov.": "11",
+    "dez.": "12",
+    }
+
+    parts = date.split()
+
+    day = parts[0]
+    month = months[parts[2]]
+    year = parts[4]
+    time = parts[5]
+
+    normalized = f"{year}-{month}-{day} {time}"
+
+    return datetime.strptime(normalized, "%Y-%m-%d %H:%M:%S")
+
 def main(csv_file: str, db_file: str):
     conn = sqlite3.connect(db_file)
     cursor = conn.cursor()
@@ -46,7 +73,13 @@ def main(csv_file: str, db_file: str):
             if activity_type not in VALID_ACTIVITIES.keys():
                 continue
 
-            dt = datetime.strptime(date, "%b %d, %Y, %I:%M:%S %p")
+            try:
+                dt = datetime.strptime(date, "%b %d, %Y, %I:%M:%S %p")
+            except ValueError:
+                dt = parse_date(date)
+            except:
+                print("Error when parsing csv")
+                exit 1
             iso_date = dt.strftime("%Y-%m-%d %H:%M:%S")
 
             activity_type = VALID_ACTIVITIES[activity_type]
