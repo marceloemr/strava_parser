@@ -33,7 +33,7 @@ jobs:
         run: |
           mkdir -p data/unzipped
 
-          if [ -n "${{ github.event.inputs.zip_url }}" ]; then
+          if [[ -n "${{ github.event.inputs.zip_url }}" ]]; then
             echo "Downloading ZIP from:"
             echo "${{ github.event.inputs.zip_url }}"
 
