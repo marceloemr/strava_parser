@@ -2,6 +2,11 @@ name: Update DB and display
 
 on:
   workflow_dispatch:
+    inputs:
+      zip_url:
+        description: "URL of the zip file"
+        required: false
+        type: string
   push:
     branches:
       - main
@@ -24,10 +29,18 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y unzip sqlite3
 
-      - name: Unzip archive
+      - name: Prepare ZIP file
         run: |
           mkdir -p data/unzipped
 
+          if [ -n "${{ github.event.inputs.zip_url }}" ]; then
+            echo "Downloading ZIP from:"
+            echo "${{ github.event.inputs.zip_url }}"
+
+            curl -L "${{ github.event.inputs.zip_url }}" -o data/latest.zip
+
+      - name: Unzip archive
+        run: |
           LATEST_ZIP=$(ls -t data/*.zip | head -n 1)
 
           echo "Latest zip file: $LATEST_ZIP"
