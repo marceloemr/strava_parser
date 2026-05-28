@@ -40,4 +40,4 @@ jobs:
 
       - name: Distance walked in 2026
         run: |
-          sqlite3 strava.db < queries/distancia_caminhada_em_2026.sql
+          sqlite3 -header -column strava.db < queries/distancia_caminhada_em_2026.sql
