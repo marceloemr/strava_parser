@@ -36,7 +36,7 @@ jobs:
 
       - name: Run Python script
         run: |
-          python parse_activities.py -c data/unzipped/export*/activities.csv
+          python parse_activities.py -c data/unzipped/export*/activities.csv -d strava.db
 
       - name: Distance walked in 2026
         run: |
